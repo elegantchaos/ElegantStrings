@@ -24,8 +24,6 @@ jobs:
             swift --version
         - name: Swift Version
           run: swift --version
-        - name: Build (Release)
-          run: swift build -c release
         - name: Test (Release)
           run: swift test --configuration release -Xswiftc -enable-testing --enable-test-discovery
         - name: Upload Logs
@@ -66,8 +64,6 @@ jobs:
             xcrun swift --version
         - name: Swift Version
           run: swift --version
-        - name: Build (Release)
-          run: export PATH="swift-latest:$PATH"; swift build -c release
         - name: Test (Release)
           run: export PATH="swift-latest:$PATH"; swift test --configuration release -Xswiftc -enable-testing 
         - name: Upload Logs
@@ -89,8 +85,6 @@ jobs:
           run: mkdir logs
         - name: Swift Version
           run: swift --version
-        - name: Build (Release)
-          run: swift build -c release
         - name: Test (Release)
           run: swift test --configuration release -Xswiftc -enable-testing --enable-test-discovery
         - name: Upload Logs
@@ -112,8 +106,6 @@ jobs:
           run: mkdir logs
         - name: Swift Version
           run: swift --version
-        - name: Build (Release)
-          run: swift build -c release
         - name: Test (Release)
           run: swift test --configuration release -Xswiftc -enable-testing 
         - name: Upload Logs
@@ -156,11 +148,6 @@ jobs:
             SCHEME="ElegantStrings-iOS"
             fi
             echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'" > setup.sh
-        - name: Build (iOS Release)
-          run: |
-            source "setup.sh"
-            echo "Building workspace $WORKSPACE scheme $SCHEME."
-            xcodebuild clean build -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ENABLE_TESTABILITY=YES | tee logs/xcodebuild-iOS-build-release.log | xcpretty
         - name: Test (iOS Release)
           run: |
             source "setup.sh"
@@ -183,11 +170,6 @@ jobs:
             SCHEME="ElegantStrings-tvOS"
             fi
             echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'" > setup.sh
-        - name: Build (tvOS Release)
-          run: |
-            source "setup.sh"
-            echo "Building workspace $WORKSPACE scheme $SCHEME."
-            xcodebuild clean build -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ENABLE_TESTABILITY=YES | tee logs/xcodebuild-tvOS-build-release.log | xcpretty
         - name: Test (tvOS Release)
           run: |
             source "setup.sh"
@@ -270,11 +252,6 @@ jobs:
             SCHEME="ElegantStrings-iOS"
             fi
             echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'" > setup.sh
-        - name: Build (iOS Release)
-          run: |
-            source "setup.sh"
-            echo "Building workspace $WORKSPACE scheme $SCHEME."
-            xcodebuild clean build -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ENABLE_TESTABILITY=YES | tee logs/xcodebuild-iOS-build-release.log | xcpretty
         - name: Test (iOS Release)
           run: |
             source "setup.sh"
@@ -297,11 +274,6 @@ jobs:
             SCHEME="ElegantStrings-tvOS"
             fi
             echo "set -o pipefail; export PATH='swift-latest:$PATH'; WORKSPACE='$WORKSPACE'; SCHEME='$SCHEME'" > setup.sh
-        - name: Build (tvOS Release)
-          run: |
-            source "setup.sh"
-            echo "Building workspace $WORKSPACE scheme $SCHEME."
-            xcodebuild clean build -workspace "$WORKSPACE" -scheme "$SCHEME" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ENABLE_TESTABILITY=YES | tee logs/xcodebuild-tvOS-build-release.log | xcpretty
         - name: Test (tvOS Release)
           run: |
             source "setup.sh"
