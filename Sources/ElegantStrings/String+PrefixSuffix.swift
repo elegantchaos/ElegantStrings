@@ -6,14 +6,16 @@
 import Foundation
 
 public extension StringProtocol {
+    /// Alias for hasSuffix
+    /// String supports Collection's `starts(with:)`; for consistency it
+    /// makes sense to also support `ends(with:)` since that's intuitively
+    /// what we often try to call!
     func ends<S>(with other: S) -> Bool where S: StringProtocol {
-        guard other.count > 0 else { return true }
-        guard let start = range(of: other, options: .backwards, range: nil, locale: nil) else { return false }
-        return start.upperBound == endIndex
+        hasSuffix(other)
     }
 
     func removing<S>(prefix: S) -> SubSequence where S: StringProtocol {
-        guard prefix.count > 0, starts(with: prefix) else { return self[..<endIndex] }
+        guard hasPrefix(prefix) else { return self[..<endIndex] }
         return self[prefix.count...]
     }
 
@@ -23,7 +25,7 @@ public extension StringProtocol {
     }
 
     func trimmed<S>(ifPrefix prefix: S) -> SubSequence? where S: StringProtocol {
-        guard prefix.count > 0, starts(with: prefix) else { return nil }
+        guard hasPrefix(prefix) else { return nil }
         return self[prefix.count...]
     }
 
