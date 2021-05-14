@@ -1,3 +1,3 @@
 # ElegantStrings
 
-A description of this package.
+Some minor additions and extensions to the Swift `StringProtocol` classes.
