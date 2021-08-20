@@ -8,6 +8,11 @@ import Foundation
 /// Explicit support for integer slicing of strings.
 
 public extension StringProtocol {
+    subscript(_ intIndex: Int) -> Character {
+        let index = index(startIndex, offsetBy: intIndex)
+        return self[index]
+    }
+    
     subscript(_ partial: PartialRangeUpTo<Int>) -> SubSequence {
         get {
             let upper = index(startIndex, offsetBy: partial.upperBound)
