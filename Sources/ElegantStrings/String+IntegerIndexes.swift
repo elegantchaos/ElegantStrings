@@ -9,8 +9,8 @@ import Foundation
 
 public extension StringProtocol {
     subscript(_ intIndex: Int) -> Character {
-        let index = index(startIndex, offsetBy: intIndex)
-        return self[index]
+        let stringIndex = index(startIndex, offsetBy: intIndex)
+        return self[stringIndex]
     }
     
     subscript(_ partial: PartialRangeUpTo<Int>) -> SubSequence {
