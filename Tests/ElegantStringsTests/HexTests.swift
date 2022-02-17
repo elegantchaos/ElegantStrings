@@ -58,4 +58,21 @@ class HexTestCase: XCTestCase {
         XCTAssertEqual(String(hex: data, tagMode: .lower), "0xDEADBEEF")
     }
 
+    func testHexToData() {
+        let data = "DEADBEEF".hexData!
+        XCTAssertEqual(data.count, 4)
+        XCTAssertEqual(data[0], 0xDE)
+        XCTAssertEqual(data[1], 0xAD)
+        XCTAssertEqual(data[2], 0xBE)
+        XCTAssertEqual(data[3], 0xEF)
+    }
+    
+    func testHexDataRoundTrip() {
+        let string = "This is a test string"
+        let data = string.data(using: .utf8)!
+        let hex = String(hex: data)
+        let decodedData = hex.hexData!
+        let decodedString = String(data: decodedData, encoding: .utf8)
+        XCTAssertEqual(decodedString, string)
+    }
 }
